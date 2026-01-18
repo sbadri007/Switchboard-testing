@@ -513,6 +513,7 @@ git describe --tags
 ---
 
 ## Architecture Diagram
+```
 ┌────────────────────────────────────┐
 │     Your Application               │
 │     (Exchange Agent, etc.)         │
@@ -538,3 +539,4 @@ git describe --tags
 │  Agents:    │    │  Agents:     │
 │  • test-001 │    │  • vision    │
 └─────────────┘    └──────────────┘
+```
