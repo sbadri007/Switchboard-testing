@@ -513,7 +513,6 @@ git describe --tags
 ---
 
 ## Architecture Diagram
-
 ┌────────────────────────────────────┐
 │     Your Application               │
 │     (Exchange Agent, etc.)         │
