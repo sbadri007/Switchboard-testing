@@ -17,14 +17,14 @@ Complete step-by-step guide to deploy NANDA Index + AGNTCY ADS with working fede
 ## Part 1: Deploy NANDA Index Registry
 
 ### Server Setup
-```
+```bash
 # Linode specs: 1GB RAM, Ubuntu 22.04
 # Note your public IP (example: 45.56.102.83)
 # Configure firewall: Ports 22, 6900, 27017 (internal only)
 ```
 
 ### 1. Install MongoDB 7.0
-```
+```bash
 ssh root@YOUR_NANDA_IP
 
 # Add MongoDB repository
@@ -351,7 +351,7 @@ export AGNTCY_ADS_URL="YOUR_AGNTCY_IP:8888"
 # Start service
 uv run python3 registry.py
 
-# Look for these success messages:
+# Look for these messages:
 # ✅ AGNTCY SDK Client initialized at YOUR_AGNTCY_IP:8888
 # [Switchboard] ✅ AGNTCY adapter initialized: YOUR_AGNTCY_IP:8888
 # [Switchboard] ✅ Switchboard enabled
@@ -410,41 +410,6 @@ curl "http://YOUR_NANDA_IP:6900/search?q=test"
 dirctl --server-addr YOUR_AGNTCY_IP:8888 search --name "test-*"
 
 # Should return: test-vision-agent CID
-```
-
----
-
-## Complete Test Script
-
-Save this as `test-federation.sh`:
-
-```bash
-#!/bin/bash
-
-NANDA_IP="YOUR_NANDA_IP"
-AGNTCY_IP="YOUR_AGNTCY_IP"
-
-echo "=== Testing NANDA Index Federation ==="
-
-echo -e "\n1. Testing NANDA Registry health..."
-curl http://$NANDA_IP:6900/health
-
-echo -e "\n\n2. Checking connected registries..."
-curl http://$NANDA_IP:6900/switchboard/registries
-
-echo -e "\n\n3. Looking up NANDA agent..."
-curl "http://$NANDA_IP:6900/switchboard/lookup/test-agent-001"
-
-echo -e "\n\n4. Looking up AGNTCY agent (cross-registry)..."
-curl "http://$NANDA_IP:6900/switchboard/lookup/@agntcy:test-vision-agent"
-
-echo -e "\n\n=== Tests Complete ==="
-```
-
-Run it:
-```bash
-chmod +x test-federation.sh
-./test-federation.sh
 ```
 
 ---
@@ -554,7 +519,6 @@ git describe --tags
 
 ## Architecture Diagram
 
-```
 ┌────────────────────────────────────┐
 │     Your Application               │
 │     (Exchange Agent, etc.)         │
@@ -580,30 +544,3 @@ git describe --tags
 │  Agents:    │    │  Agents:     │
 │  • test-001 │    │  • vision    │
 └─────────────┘    └──────────────┘
-```
-
----
-
-## Success Criteria
-
-✅ NANDA Index running and accessible  
-✅ MongoDB connected with authentication  
-✅ AGNTCY ADS deployed and running  
-✅ Test agents registered in both registries  
-✅ Switchboard shows 2 connected registries  
-✅ Cross-registry lookup working  
-✅ Schema translation working (OASF → NANDA)
-
-**You're done!** You now have a working federated agent discovery system.
-
----
-
-## What You Built
-
-You successfully deployed:
-- **NANDA Index Registry** - Central agent directory with MongoDB
-- **AGNTCY ADS** - External P2P agent network
-- **Switchboard** - Cross-registry discovery with automatic schema translation
-- **Federation** - Single query searches multiple independent registries
-
-**Next steps:** Register your real agents (MBTA agents, etc.) and integrate with your Exchange Agent for dynamic discovery!
