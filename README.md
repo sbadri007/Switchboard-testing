@@ -39,11 +39,11 @@ systemctl status mongod
 ```
 
 ### 2. Configure MongoDB Authentication
-
+```bash
 ### Connect to MongoDB
 mongosh
 
-### Create admin user (in MongoDB shell)
+# Create admin user (in MongoDB shell)
 use admin
 db.createUser({
   user: "nanda_admin",
@@ -52,13 +52,13 @@ db.createUser({
 })
 exit
 
-### Enable authentication
+# Enable authentication
 nano /etc/mongod.conf
 # Add these lines (remove # before security:):
 security:
   authorization: enabled
 
-### Restart MongoDB
+# Restart MongoDB
 systemctl restart mongod
 ```
 
