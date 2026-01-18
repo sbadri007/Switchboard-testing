@@ -1,16 +1,11 @@
 # Switchboard-testing
-Testing of switchboard logic, and cross communication across multiple registry networks
-# NANDA Index Federation Setup
-
-Complete step-by-step guide to deploy NANDA Index + AGNTCY ADS with working federation.
+Testing of switchboard logic, and cross communication across multiple registry networks; step-by-step guide to deploy NANDA Index + AGNTCY ADS with working federation.
 
 ---
 
 ## Prerequisites
 
 - 2 Linode servers (Ubuntu 22.04)
-- Domain name (optional, for SSL)
-- Basic Linux knowledge
 
 ---
 
