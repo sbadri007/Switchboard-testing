@@ -28,7 +28,7 @@ This setup showcases **cross-registry agent discovery** where:
 
 ```
 ┌─────────────────────────────────────────────┐
-│   NANDA Switchboard (45.56.102.83:6900)    │
+│   Linode Switchboard (45.56.102.83:6900)    │
 │   • Unified discovery API                   │
 │   • Schema translation (OASF ↔ NANDA)      │
 │   • Cross-registry routing                  │
